@@ -1,6 +1,7 @@
 package test;
 
 import org.testng.annotations.Test;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -8,8 +9,14 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @projectName: leetcode
@@ -78,6 +85,89 @@ public class TestDemo {
         int i = Integer.parseInt("01");
 //        System.out.println(divide);
         System.out.println(i);
+    }
+    @Test
+    public void testDemo(){
+        System.out.println(14^3);
+    }
+    @Test
+    public void testContains(){
+        List<Long> list=new ArrayList<>();
+        for (long i=0;i<30000;i++){
+            list.add(i);
+        }
+        List<Long> value=new ArrayList<>();
+        for (long i=1;i<20000;i++){
+            value.add(i);
+        }
+        List<Long> resList=new ArrayList<>();
+        long l = System.currentTimeMillis();
+        for (int i = 0; i < value.size(); i++) {
+            if(!list.contains(value.get(i))){
+                resList.add(value.get(i));
+            }
+        }
+//        long l1 = System.currentTimeMillis();
+        System.out.println(resList.size());
+//
+        long l2 = System.currentTimeMillis();
+        List<Long> collect = list.stream().filter(t -> !value.contains(t)).collect(Collectors.toList());
+        long l3 = System.currentTimeMillis();
+//
+//
+//        long start = System.currentTimeMillis();
+//        list.removeAll(value);
+//        long end = System.currentTimeMillis();
+//        System.out.println("removeAll所花费的时间:"+(end-start));
+        System.out.println("stream所花费时间："+(l3-l2));
+//        System.out.println("contains所花费的时间："+(l1-l));
+//        System.out.println(resList);
+        long l4 = System.currentTimeMillis();
+        CopyOnWriteArrayList<Long> longs = filterList(list, value);
+        long l5 = System.currentTimeMillis();
+        System.out.println("filterList花费时间:"+(l5-l4));
+        System.out.println(list.size());
+        System.out.println(longs.size());
+        System.out.println(collect.size());
+
+    }
+    public void testString(){
+        String str="hello word";
+        str+='a';
+        str=str+100;
+    }
+    @Test
+    public void testFilterList(){
+        List<Student> list=new ArrayList<>();
+        for (int i=0;i<100000;i++){
+            list.add(new Student(i,"张三"+i));
+        }
+        List<Student> filterList=new ArrayList<>();
+        for (int j=1;j<100;j++){
+            list.add(new Student(j*10,"张三"+j*10));
+        }
+//        CopyOnWriteArrayList<Student> students = filterList(list, filterList);
+//        System.out.println(students);
+    }
+
+    public static CopyOnWriteArrayList<Long> filterList(List<Long> list, List<Long> filterList){
+        ConcurrentHashMap<Long,Long> filterMap = new ConcurrentHashMap<>();
+        filterList.parallelStream().map(id->filterMap.put(id,id));
+//
+//        return list.parallelStream().filter(id -> {
+//            Long idT = filterMap.get(id);
+//            return Objects.isNull(idT);
+//        }).collect(Collectors.toCollection(CopyOnWriteArrayList::new));
+//        return list.parallelStream().map(filterMap::get).filter(Objects::isNull)
+//                .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
+        CopyOnWriteArrayList<Long> subjectIds= new CopyOnWriteArrayList<>();
+        list.parallelStream().forEach(id->{
+            Long aLong = filterMap.get(id);
+            if (Objects.isNull(aLong)){
+                subjectIds.add(aLong);
+            }
+        });
+        return subjectIds;
     }
 
 
