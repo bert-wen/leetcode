@@ -31,7 +31,7 @@ public class Test {
         listList.add(list);
         return listList;
     }
-    @org.testng.annotations.Test
+    @org.junit.Test
     public void test() throws MalformedURLException {
         String s = "祝你考出好成绩！";
         System.out.println(s.length());

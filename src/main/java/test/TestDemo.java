@@ -1,7 +1,6 @@
 package test;
 
-import org.testng.annotations.Test;
-import sun.reflect.generics.tree.VoidDescriptor;
+
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,14 +27,14 @@ import java.util.stream.Stream;
  * @version: 1.0
  */
 public class TestDemo {
-    @Test
+    @org.junit.Test
     public void test(){
         boolean[]  arr=new boolean[5];
         for (boolean b : arr) {
             System.out.println(b);
         }
     }
-    @Test
+    @org.junit.Test
     public static void testTime(){
         WeekFields weekFields = WeekFields.ISO;
         LocalDate now = LocalDate.now();
@@ -79,18 +78,18 @@ public class TestDemo {
         Instant instant = localDateTime.atZone(zone).toInstant();
         return Date.from(instant);
     }
-    @Test
+    @org.junit.Test
     public void testBigDecimal(){
 //        BigDecimal divide = new BigDecimal(30).divide(new BigDecimal(0), 2, BigDecimal.ROUND_DOWN);
         int i = Integer.parseInt("01");
 //        System.out.println(divide);
         System.out.println(i);
     }
-    @Test
+    @org.junit.Test
     public void testDemo(){
         System.out.println(14^3);
     }
-    @Test
+    @org.junit.Test
     public void testContains(){
         List<Long> list=new ArrayList<>();
         for (long i=0;i<30000;i++){
@@ -136,7 +135,7 @@ public class TestDemo {
         str+='a';
         str=str+100;
     }
-    @Test
+    @org.junit.Test
     public void testFilterList(){
         List<Student> list=new ArrayList<>();
         for (int i=0;i<100000;i++){
