@@ -1,6 +1,6 @@
 package medium.tree;
 
-import javax.xml.soap.Node;
+import tree.TreeNode;
 
 /**
  *  统计二叉树中好节点的数目

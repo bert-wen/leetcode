@@ -1,5 +1,8 @@
 package medium.tree;
 
+import tree.Tree;
+import tree.TreeNode;
+
 /**
  * 最深叶节点的最近公共祖先
  */
@@ -7,7 +10,7 @@ public class LcaDeepestLeaves {
     static TreeNode ans;
     static Integer maxDepth=-1;
     public static void main(String[] args) {
-        int [] arr={3,4,5,6,};
+        Integer [] arr={3,4,5,6,};
         TreeNode treeNode = Tree.buildTree(arr);
         System.out.println(treeNode);
         TreeNode treeNode1 = lcaDeepestLeaves(treeNode);

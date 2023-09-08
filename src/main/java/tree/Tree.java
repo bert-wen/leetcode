@@ -1,4 +1,4 @@
-package medium.tree;
+package tree;
 
 /**
  *  生成树
@@ -11,17 +11,17 @@ public class Tree {
         this.treeNode = treeNode;
     }
 
-    public static TreeNode bulidBST(int[] A) {
+    public static TreeNode bulidBST(Integer[] A) {
         TreeNode root = new TreeNode(A[0]);
         for (int i=1; i<A.length; i++) {
             createBST(root, A[i]);
         }
         return root;
     }
-    public static TreeNode buildTree(int[] arr) {
+    public static TreeNode buildTree(Integer[] arr) {
        return createTree(arr,0);
     }
-    private static TreeNode createTree(int [] arr,int index) {
+    private static TreeNode createTree(Integer [] arr,int index) {
         if (index<0 || index>=arr.length){
             return null;
         }
@@ -35,7 +35,7 @@ public class Tree {
      * @param node 数的根节点
      * @param val 节点的值
      */
-    private static void createBST(TreeNode node, int val) {
+    private static void createBST(TreeNode node, Integer val) {
         if (val < node.val) {
             if (node.left == null) {
                 node.left = new TreeNode(val);
@@ -51,7 +51,7 @@ public class Tree {
     }
 
     public static void main(String[] args) {
-        int [] arr={3,5,1,6};
+        Integer [] arr={3,5,1,6};
         TreeNode treeNode1 = buildTree(arr);
         System.out.println(treeNode1);
     }
