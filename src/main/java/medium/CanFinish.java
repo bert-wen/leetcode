@@ -52,7 +52,7 @@ public class CanFinish {
             List<Integer> integers = adj.get(current);
             for (Integer integer : integers) {
                 inDegree.put(integer,inDegree.get(integer)-1);
-                // 如果有入度为零的就假如队列
+                // 如果有入度为零的就加入队列
                 if (inDegree.get(integer) == 0){
                     queen.offer(integer);
                 }

@@ -11,10 +11,8 @@ import java.util.PriorityQueue;
 public class ScheduleCourse {
     public static void main(String[] args) {
         int [][] courses = {{100, 200}, {200, 1300}, {1000, 1250}, {2000, 3200}};
-        scheduleCourse(courses);
-        for (int[] cours : courses) {
-            System.out.println(cours[0]+"-"+cours[1]);
-        }
+        System.out.println(scheduleCourse(courses));
+
     }
     public static int scheduleCourse(int[][] courses) {
         int sum=0;
