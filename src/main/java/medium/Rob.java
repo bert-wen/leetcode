@@ -20,6 +20,7 @@ public class Rob {
         if(nums.length==0){
             return 0;
         }
+        // 存放某个阶段中所偷钱数最多的值
         int [] dp=new int[nums.length+1];
         dp[0]=0;
         dp[1]=nums[0];
